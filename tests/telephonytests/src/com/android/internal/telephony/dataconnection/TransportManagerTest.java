@@ -240,25 +240,13 @@ public class TransportManagerTest extends TelephonyTest {
         verify(mTestHandler, times(1)).sendMessageAtTime(messageArgumentCaptor.capture(),
                 anyLong());
 
-        ArrayDeque<List<QualifiedNetworks>> listQueue = getQueuedNetworksList();
-        // Verify the list has been not been queued
-        // TODO: Goodle didn't take this fix.
-        // Bug id: 143317856
-        assertEquals(0, listQueue.size());
-
         // Notify handover succeeded.
         params.callback.onCompleted(true, false);
         assertEquals(AccessNetworkConstants.TRANSPORT_TYPE_WLAN,
                 mTransportManager.getCurrentTransport(ApnSetting.TYPE_IMS));
         processAllMessages();
 
-        listQueue = getQueuedNetworksList();
-        // Verify the queue is empty.
-        assertEquals(0, listQueue.size());
-
-        // Verify handover event was sent(for previous change)
-        // TODO: Goodle didn't take this fix.
-        // Bug id: 143317856
+        // Verify handover 2nd needed event was NOT sent
         verify(mTestHandler, times(1)).sendMessageAtTime(messageArgumentCaptor.capture(),
                 anyLong());
     }

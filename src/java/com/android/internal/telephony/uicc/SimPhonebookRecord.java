@@ -56,14 +56,16 @@ public class SimPhonebookRecord {
     }
 
     public SimPhonebookRecord(PhonebookRecordInfo recInfo) {
-        mRecordId = recInfo.recordId;
-        mAlphaTag = recInfo.name;
-        mNumber = recInfo.number;
-        mEmails = recInfo.emails == null ? null
-                : recInfo.emails.toArray(new String[recInfo.emails.size()]);
-        mAdditionalNumbers = recInfo.additionalNumbers == null ? null
-                : recInfo.additionalNumbers.toArray(
-                        new String[recInfo.additionalNumbers.size()]);
+        if (recInfo != null) {
+            mRecordId = recInfo.recordId;
+            mAlphaTag = recInfo.name;
+            mNumber = recInfo.number;
+            mEmails = recInfo.emails == null ? null
+                    : recInfo.emails.toArray(new String[recInfo.emails.size()]);
+            mAdditionalNumbers = recInfo.additionalNumbers == null ? null
+                    : recInfo.additionalNumbers.toArray(
+                            new String[recInfo.additionalNumbers.size()]);
+        }
     }
 
     public SimPhonebookRecord() {}
@@ -85,6 +87,7 @@ public class SimPhonebookRecord {
         }
         return pbRecordInfo;
     }
+
     public int getRecordId() {
         return mRecordId;
     }

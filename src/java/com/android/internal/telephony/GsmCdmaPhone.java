@@ -1405,7 +1405,7 @@ public class GsmCdmaPhone extends Phone {
         boolean useImsForPsOnlyCall = useImsForPsOnlyCall();
 
         if (DBG) {
-            logd("useImsForCall=" + useImsForCall
+            logi("useImsForCall=" + useImsForCall
                     + ", useImsForPsOnlyCall=" + useImsForPsOnlyCall
                     + ", useOnlyDialedSimEccList=" + useOnlyDialedSimEccList
                     + ", isEmergency=" + isEmergency
@@ -3619,7 +3619,7 @@ public class GsmCdmaPhone extends Phone {
         return isProhibited;
     }
 
-    private void registerForIccRecordEvents() {
+    protected void registerForIccRecordEvents() {
         IccRecords r = mIccRecords.get();
         if (r == null) {
             return;
@@ -3638,7 +3638,7 @@ public class GsmCdmaPhone extends Phone {
         }
     }
 
-    private void unregisterForIccRecordEvents() {
+    protected void unregisterForIccRecordEvents() {
         IccRecords r = mIccRecords.get();
         if (r == null) {
             return;
